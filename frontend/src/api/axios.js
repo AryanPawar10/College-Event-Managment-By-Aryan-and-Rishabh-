@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:5000/api', // Adjust if backend URL changes
+  baseURL: 'https://lastfly-backend.onrender.com/api', // Adjust if backend URL changes
   headers: {
     'Content-Type': 'application/json',
   },
