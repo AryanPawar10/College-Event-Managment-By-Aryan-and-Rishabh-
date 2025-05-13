@@ -15,7 +15,7 @@ function EventRegistrations() {
       const token = getToken();
       try {
         const res = await axios.get(`/registration/event/${eventId}`, {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: `Bearer ${token} `}
         });
         setRegistrations(res.data);
       } catch (err) {
@@ -44,11 +44,11 @@ function EventRegistrations() {
               >
                 <span>
                   <FaUser className="me-2 text-primary" />
-                  <strong>{reg.user?.name || 'Deleted User'}</strong>
+                  <strong>{reg.user.name}</strong>
                 </span>
                 <span>
                   <FaEnvelope className="me-2 text-secondary" />
-                  {reg.user?.email || 'No Email'}
+                  {reg.user.email}
                 </span>
               </li>
             ))}

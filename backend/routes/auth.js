@@ -21,18 +21,14 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Hash password before saving to DB
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user
+    // ✅ Let mongoose middleware hash password
     const user = new User({
       name,
       email,
-      password: hashedPassword,
-      role: role || 'user',  // Default to 'user' if role not provided
+      password,  // raw password, will be hashed by pre-save hook
+      role: role || 'user',
     });
 
-    // Save the user to the database
     await user.save();
 
     // Generate JWT token
