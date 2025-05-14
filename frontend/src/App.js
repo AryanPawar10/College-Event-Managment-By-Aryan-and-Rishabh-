@@ -1,14 +1,17 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Events from './pages/Events'; // ✅ Now homepage
+import Events from './pages/Events';
 import Profile from './pages/Profile';
 import CreateEvent from './pages/CreateEvent';
 import MyRegistrations from './pages/MyRegistrations';
-import EventRegistrations from './pages/EventRegistrations'; // ✅ Admin View Registrations
-import ForgotPassword from './pages/ForgotPassword';         // ✅ Forgot Password Page
-import ResetPassword from './pages/ResetPassword';           // ✅ Reset Password Page
+import EventRegistrations from './pages/EventRegistrations';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 import Navbar from './components/Navbar';
 
@@ -17,11 +20,9 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        {/* ✅ Full-width homepage */}
         <Route path="/" element={<Events />} />
         <Route path="/events" element={<Events />} />
 
-        {/* ✅ Wrapped in container for layout consistency */}
         <Route path="/login" element={<div className="container mt-5"><Login /></div>} />
         <Route path="/register" element={<div className="container mt-5"><Register /></div>} />
         <Route path="/profile" element={<div className="container mt-5"><Profile /></div>} />

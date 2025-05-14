@@ -14,3 +14,16 @@ body {
   background-attachment: fixed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+/* Force navbar items to display in a row on small screens */
+@media (max-width: 991.98px) {
+  #navbarNav .navbar-nav {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  #navbarNav .nav-item {
+    text-align: center;
+  }
+}
