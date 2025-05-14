@@ -6,6 +6,7 @@ import { FaUserPlus, FaEnvelope, FaLock, FaUserShield } from 'react-icons/fa';
 function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'user' });
   const [message, setMessage] = useState('');
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -14,12 +15,22 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('');
+    setIsError(false);
+
     try {
       const res = await axios.post('/auth/register', form);
-      setMessage('✅ Registration successful!');
+      setMessage('✅ Registration successful! Redirecting to login...');
       setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
-      setMessage(err.response?.data?.message || '❌ Registration failed');
+      const errorMsg = err.response?.data?.message || '❌ Registration failed';
+      setMessage(errorMsg);
+      setIsError(true);
+
+      // ⏩ Redirect to login if user already exists
+      if (errorMsg.toLowerCase().includes('user already exists')) {
+        setTimeout(() => navigate('/login'), 2000);
+      }
     }
   };
 
@@ -37,7 +48,16 @@ function Register() {
           Register
         </h2>
 
-        {message && <div className="alert alert-info">{message}</div>}
+        {message && (
+          <div className={`alert ${isError ? 'alert-danger' : 'alert-success'}`}>
+            {message}
+            {isError && message.toLowerCase().includes('user already exists') && (
+              <div className="mt-1">
+                Redirecting to <strong>Login</strong>...
+              </div>
+            )}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="p-2">
           <div className="mb-3">

@@ -41,7 +41,7 @@ function Events() {
   const handleRegister = async (eventId) => {
     const token = localStorage.getItem('token');
     if (!token) {
-      setError('Login required to register for events.');
+      navigate('/register');
       return;
     }
 
@@ -79,14 +79,22 @@ function Events() {
   };
 
   return (
-    <div className="bg-dark text-white min-vh-100 py-5 px-3" style={{
-      backgroundImage: `url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-    }}>
+    <div
+      className="bg-dark text-white min-vh-100 py-5 px-3"
+      style={{
+        backgroundImage: `url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="container">
-        <h2 className="text-center mb-5 fw-bold display-5 text-white border-bottom pb-2">🎉 Upcoming Events</h2>
+        <h2
+          className="text-center mb-5 fw-bold display-5 text-white border-bottom pb-2"
+          style={{ textShadow: '2px 2px 4px #000000' }}
+        >
+          🎉 Upcoming Events
+        </h2>
 
         {message && <div className="alert alert-success">{message}</div>}
         {error && <div className="alert alert-danger">{error}</div>}
